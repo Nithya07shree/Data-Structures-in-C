@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define queue_size 5
+
+void insert_rear(int item,int *r, int *count, int q[])
+{
+    if(*count==queue_size)
+    {
+        printf("Queue is full!! Insertion not possible\n");
+        return;
+    }
+    *r=(*r+1)%queue_size;
+    q[*r]=item;
+    *count+=1;
+}
+
+void delete_front(int*f, int*count, int q[])
+{
+    int item;
+    if(*count==0)
+    {
+        printf("Queue empty!!Deletion not possible\n");
+        return;
+    }
+    item=q[*f];
+    printf("Deleted item is %d\n",item);
+    *f=(*f+1)%queue_size;
+    *count-=1;
+}
+
+void display(int f, int count, int q[])
+{
+    int i;
+    if(count==0)
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+    for(i=1;i<=count;i++)
+    {
+        printf("%d\t",q[f]);
+        f=(f+1)%queue_size;
+    }
+}
+
+int main()
+{
+    int f, r, choice, item, q[20], count;
+    f=0;
+    r=-1;
+    count=0;
+    for(;;)
+    {
+        printf("\n1.Insert\t2.Delete\t3.Display\t4.Exit\n");
+        printf("Enter your choice\t");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:printf("Enter item to insert\t");
+                   scanf("%d",&item);
+                   insert_rear(item,&r,&count,q);
+                   break;
+            case 2:delete_front(&f,&count,q);
+                   break;
+            case 3:printf("The contents are\n");
+                   display(f,count,q);
+                   break;
+            default:exit(0);
+        }
+    }
+}
