@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<stdlib.h>
+int count=0;
+void tower(int n, char source,char dest,char temp)
+{
+    if(n==1)
+    {
+        printf("disc %d is moved from %d to %d\n",n,source,dest);
+        count++;
+        return;
+    }
+    tower(n-1,source,temp,dest);
+    printf("disc %d is moved from %d to %d\n",n,source,dest);
+    count++;
+    tower(n-1,temp,dest,source);
+}
+int main()
+{
+    int n;
+    char source='a',dest='c',temp='b';
+    printf("Enter the number of discs\t");
+    scanf("%d",&n);
+    printf("\n\n");
+    tower(n,source,dest,temp);
+    printf("\n\nthe number of moves is %d\n",count);
+}
