@@ -1,0 +1,52 @@
+#include<stdio.h>
+struct doj
+{
+    int date;
+    int month;
+    int year;
+};
+struct salary
+{
+    float basic;
+    float da;
+    float hra;
+};
+struct employee
+{
+    char ename[30];
+    int empid;
+    struct doj DOJ;
+    struct salary SALARY;
+};
+int main(){
+    struct employee e[100];
+    int n,i;
+    printf("ENter the number of employees \n");
+    scanf("%d",&n);
+    printf("enter the details \n");
+    for(i=0;i<n;i++)
+    {
+        printf("employee %d \n",i+1);
+        printf("enter the name \n");
+        scanf("%s",e[i].ename);
+        printf("enter the ID \n");
+        scanf("%d",&e[i].empid);
+        printf("enter the date of joining(date/month/year)\n");
+        scanf("%d%d%d",&e[i].DOJ.date,&e[i].DOJ.month,&e[i].DOJ.year);
+        printf("enter the salary (basic/da/hra)\n");
+        scanf("%f%f%f",&e[i].SALARY.basic,&e[i].SALARY.da,&e[i].SALARY.hra);
+    }
+    printf("employee details are \n");
+    printf("name\tempid\tdate\tmonth\tyear\tbasic\t\tda\t\thra\n");
+    for(i=0;i<n;i++){
+        printf("%s\t",e[i].ename);
+        printf("%d\t",e[i].empid);
+        printf("%d\t",e[i].DOJ.date);
+        printf("%d\t",e[i].DOJ.month);
+        printf("%d\t",e[i].DOJ.year);
+        printf("%f\t",e[i].SALARY.basic);
+        printf("%f\t",e[i].SALARY.da);
+        printf("%f\n",e[i].SALARY.hra);
+    }
+    return 0;
+}
